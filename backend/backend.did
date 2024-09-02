@@ -1,0 +1,25 @@
+type Time = int;
+type File = 
+ record {
+   content: opt blob;
+   createdAt: Time;
+   folderId: opt nat;
+   id: nat;
+   name: text;
+   size: nat;
+   updatedAt: Time;
+ };
+service : {
+  createFolder: (text, opt nat) -> (nat);
+  deleteFile: (nat) -> (bool);
+  getFileDetails: (nat) -> (opt File) query;
+  getFiles: () -> (vec record {
+                         nat;
+                         File;
+                       }) query;
+  getFilesInFolder: (nat) -> (vec record {
+                                    nat;
+                                    File;
+                                  }) query;
+  uploadFile: (text, blob, opt nat) -> (nat);
+}
